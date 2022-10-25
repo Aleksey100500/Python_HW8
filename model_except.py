@@ -13,3 +13,8 @@ def check_name():
     surch_name = surch_name.lower()
     surch_name = surch_name.title()
     return surch_name
+
+def check_work():
+    surch_name = str(input('Введите должность сотрудника: '))
+    surch_name = surch_name.lower()
+    return surch_name
