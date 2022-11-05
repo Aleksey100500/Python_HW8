@@ -76,6 +76,7 @@ def user_choise_sotrudnik():
             if row['SNFN'][0] == surch_name:
                 print(row)
     mlog.user_number_2(surch_name)
+    user_interface()
     return surch_name
 
 
@@ -88,6 +89,7 @@ def user_choise_work():
             if row['JobTitle'][0] == surch_name:
                 print(row)
     mlog.user_number_3(surch_name)
+    user_interface()
 
 
 def surch_col():
