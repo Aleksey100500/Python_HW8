@@ -1,8 +1,6 @@
-import csv
-from distutils import dir_util
 import model_except as me
 import csv
-
+import model_log as mlog
 
 def user_interface():
     user_menu()
@@ -20,7 +18,9 @@ def user_interface():
     elif number == 6:
         user_delete(me.check_name())
     elif number == 7:
+        mlog.exit_menu()
         user_exit()
+        
 
 
 def user_menu():
@@ -37,7 +37,7 @@ def user_menu():
 def user_exit():
     exit()
 
-    
+
 def user_delete(surch_name):
     with open('BD_STO.csv', 'rt') as csvfile:
         reader = csv.reader(csvfile)
@@ -49,6 +49,7 @@ def user_delete(surch_name):
                     line = []
                 writer.writerow(line)
                 print(line)
+    mlog.user_number_6(surch_name)
     user_interface()
 
 
@@ -62,6 +63,8 @@ def user_choise_fullcsv():
         all_reader = csv.reader(csvfile, delimiter=',')
         for row in all_reader:
             print(row)
+    mlog.user_number_1()
+    user_interface()
 
 
 def user_choise_sotrudnik():
@@ -72,6 +75,7 @@ def user_choise_sotrudnik():
             row['SNFN'] = row['SNFN'].split()
             if row['SNFN'][0] == surch_name:
                 print(row)
+    mlog.user_number_2(surch_name)
     return surch_name
 
 
@@ -83,6 +87,7 @@ def user_choise_work():
             row['JobTitle'] = row['JobTitle'].split()
             if row['JobTitle'][0] == surch_name:
                 print(row)
+    mlog.user_number_3(surch_name)
 
 
 def surch_col():
@@ -133,6 +138,7 @@ def user_choise_new_rab():
         csvfile.write('\n{},{},{},{},{},{}'.format(
             calc, new_name, birth, tel_num, ed_wor, job_tit))
         print('Записано.')
+    mlog.user_number_4(new_name)
 
 
 def user_choise_update_new():
@@ -191,6 +197,7 @@ def user_choise_update_new():
         else:
             print('Вы вернулись в гланое меню.')
         user_interface()
+    mlog.user_number_5(new_name)
 
 
 user_interface()
