@@ -16,7 +16,11 @@ def user_interface():
     elif number == 4:
         user_choise_new_rab()
     elif number == 5:
-        user_choise_update_new(user_choise_sotrudnik())
+        user_choise_update_new()
+    elif number == 6:
+        user_delete(me.check_name())
+    elif number == 7:
+        user_exit()
 
 
 def user_menu():
@@ -28,6 +32,24 @@ def user_menu():
     print('5. Обновить данные сотрудника.')
     print('6. Удалить существующую запись.')
     print('7. Закончить работу.\n')
+
+
+def user_exit():
+    exit()
+
+    
+def user_delete(surch_name):
+    with open('BD_STO.csv', 'rt') as csvfile:
+        reader = csv.reader(csvfile)
+
+        with open('new_BD_STO.csv', 'wt') as csvfile:
+            writer = csv.writer(csvfile)
+            for line in reader:
+                if surch_name in line[1]:
+                    line = []
+                writer.writerow(line)
+                print(line)
+    user_interface()
 
 
 def user_choise():
@@ -127,32 +149,45 @@ def user_choise_update_new():
         if user_update_menu_1 == 1:
             with open('BD_STO.csv', 'wt') as csvfile:
                 new_name = me.check_name()
-                data = data.replace(f'{old_name}', f'{new_name}')
+                data = data.replace(f'{old_name}', f'{new_name}', 1)
                 csvfile.write(data)
+
         elif user_update_menu_1 == 2:
+            print('Текущий.')
             old_year = year_of_birth()
             with open('BD_STO.csv', 'wt') as csvfile:
+                print('На который хотите заменить.')
                 new_year = year_of_birth()
                 data = data.replace(f'{old_year}', f'{new_year}')
                 csvfile.write(data)
+
         elif user_update_menu_1 == 3:
+            print('Текущий.')
             old_tel = number_of_tel()
             with open('BD_STO.csv', 'wt') as csvfile:
+                print('На который хотите заменить.')
                 new_tel = number_of_tel()
                 data = data.replace(f'{old_tel}', f'{new_tel}')
                 csvfile.write(data)
+
         elif user_update_menu_1 == 4:
+            print('Текущий.')
             old_education = education_workers()
             with open('BD_STO.csv', 'wt') as csvfile:
+                print('На который хотите заменить.')
                 new_education = education_workers()
                 data = data.replace(f'{old_education}', f'{new_education}')
                 csvfile.write(data)
+
         elif user_update_menu_1 == 5:
+            print('Текущий.')
             old_jobtitle = jobtitle_workers()
             with open('BD_STO.csv', 'wt') as csvfile:
+                print('На который хотите заменить.')
                 new_jobtitle = jobtitle_workers()
                 data = data.replace(f'{old_jobtitle}', f'{new_jobtitle}')
                 csvfile.write(data)
+
         else:
             print('Вы вернулись в гланое меню.')
         user_interface()
