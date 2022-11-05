@@ -76,7 +76,6 @@ def user_choise_sotrudnik():
             if row['SNFN'][0] == surch_name:
                 print(row)
     mlog.user_number_2(surch_name)
-    user_interface()
     return surch_name
 
 
@@ -198,8 +197,8 @@ def user_choise_update_new():
 
         else:
             print('Вы вернулись в гланое меню.')
-        user_interface()
+            user_interface()
     mlog.user_number_5(new_name)
-
+    
 
 user_interface()
